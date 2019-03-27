@@ -26,21 +26,21 @@ TEST_CASE( "HTML is rendered.", "[HTML]" ) {
 
     auto markup2 = div_({}, {div_({}, {p({}, {text("a nested paragraph")})})});
     REQUIRE(renderstring(markup2) == "<div><div><p>a nested paragraph</p></div></div>");
-    /*
+
     auto markup3 = html({},
-			{ head({}, { title({}, {text('Awesome Website')}),
-				script({src('/script.js')}, {})}),
+			{ head({}, { title({}, {text("Awesome Website")}),
+				script({src("/script.js")}, {})}),
 			  body({},
 			       { header({},
-					{ img({src('/logo.png')]) ]),
-                      div([], [text('Content Here')]),
-                      footer([],
-                             [hr([]),
-                              text('Copyright 2019')])
-                      ])
-               ])
-    */
-  }
+					{ img({src("/logo.png")}, {}) }),
+				   div_({}, {text("Content Here")}),
+				   footer({},
+					  {hr({}, {}),
+					      text("Copyright 2019")})
+				   })
+			    });
+    REQUIRE(renderstring(markup3) == "<html><head><title>Awesome Website</title><script src=\"/script.js\"></script></head><body><header><img src=\"/logo.png\"></img></header><div>Content Here</div><footer><hr></hr>Copyright 2019</footer></body></html>");
+      }
 }
 
 
