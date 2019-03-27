@@ -1,3 +1,10 @@
+#emacs temporaries
+*~
+\#*\#
+
+# Build directory
+_build/*
+
 # Prerequisites
 *.d
 
