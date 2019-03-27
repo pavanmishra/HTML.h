@@ -3,8 +3,8 @@
 #include "html.hpp"
 
 
-TEST_CASE( "Factorials are computed", "[factorial]" ) {
-  REQUIRE( render() == "<hr/>" );
+TEST_CASE( "HTML is rendered.", "[HTML]" ) {
+  REQUIRE( renderstring(hr({}, {})) == "<hr></hr>" );
 }
 
 
