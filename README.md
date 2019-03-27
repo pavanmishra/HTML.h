@@ -64,11 +64,3 @@ Abstracting again just because we can.
     auto _ul = [=](std::list<std::string> items){return ul({}, litems(items));}; 
     auto markup = _ul({"Bob", "Mary", "Joe"});
     assert(renderstring(markup), "<ul><li>Bob</li><li>Mary</li><li>Joe</li></ul>");
-
-
-
-    >>> _ul = lambda items: ul([], litems(items))
-    >>> render(_ul(['Bob', 'Mary', 'Joe']))
-    '<ul ><li >Bob</li><li >Mary</li><li >Joe</li></ul>'
-
-
