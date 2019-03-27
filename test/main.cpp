@@ -20,6 +20,17 @@ TEST_CASE( "HTML is rendered.", "[HTML]" ) {
     REQUIRE(renderstring(markup) == "<div>Content</div>");
   }
 
+  SECTION("Tags having attributes."){
+    auto markup = div_({lang("tr"), id("content"), class_("bar"), attribute("data-value")("foo")}, {});
+    REQUIRE(renderstring(markup) == "<div lang=\"tr\" id=\"content\" class=\"bar\" data-value=\"foo\"></div>");
+  }
+
+  SECTION("Tags with attributes and content."){
+    auto markup = div_({lang("tr")}, {text("Content")});
+    REQUIRE(renderstring(markup) == "<div lang=\"tr\">Content</div>");
+  }
+  
+  
   SECTION("Nested tags"){
     auto markup1 = div_({}, { nav({}, {}), text("Hello"), hr({}, {})});
     REQUIRE(renderstring(markup1) == "<div><nav></nav>Hello<hr></hr></div>");
@@ -44,3 +55,17 @@ TEST_CASE( "HTML is rendered.", "[HTML]" ) {
 }
 
 
+TEST_CASE("Abstracting further with the abstractions.", "[ABSTRACTING]"){
+  auto li_ = [](std::string item){return li({}, {text(item)});}; 
+  auto litems = [=](std::list<std::string> items){
+    std::list<Node> result;
+    result.resize(items.size());
+    std::transform(items.begin(), items.end(), result.begin(), [=](std::string item){ return li_(item);});
+    return result;
+  };
+  auto _ul = [=](std::list<std::string> items){return ul({}, litems(items));}; 
+  auto markup = _ul({"Bob", "Mary", "Joe"});
+  REQUIRE(renderstring(markup) == "<ul><li>Bob</li><li>Mary</li><li>Joe</li></ul>");
+
+
+}

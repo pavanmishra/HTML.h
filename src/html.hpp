@@ -62,6 +62,9 @@ std::string renderstring(Node const node){
 
 // attributes
 auto src = attribute("src");
+auto lang = attribute("lang");
+auto id = attribute("id");
+auto class_ = attribute("class");
 // tags
 auto html = element("html");
 auto body = element("body");
@@ -75,3 +78,5 @@ auto img = element("img");
 auto div_ = element("div");
 auto nav = element("nav");
 auto p = element("p");
+auto ul = element("ul");
+auto li = element("li");
