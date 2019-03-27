@@ -48,3 +48,6 @@ std::string renderstring(Node const node){
 }
 
 auto hr = element("hr");
+auto div_ = element("div");
+auto nav = element("nav");
+auto p = element("p");
